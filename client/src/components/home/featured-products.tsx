@@ -191,80 +191,76 @@ export default function FeaturedProducts() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredProducts.map((product: Product) => (
-              <Link key={product.id} href={`/product/${product.slug}`}>
-                <a className="group bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg block">
-                  <div className={`h-64 relative ${getCategoryColor(product.category_id)}`}>
-                    <div className="flex items-center justify-center h-full text-white">
-                      <span className="font-['Caveat'] text-3xl">{product.name}</span>
-                    </div>
-                    
-                    {/* Product badges */}
-                    <div className="absolute top-4 left-4 flex flex-col gap-2">
-                      {product.is_new_arrival && (
-                        <span className="bg-[var(--color-alert)] text-white text-xs px-2 py-1 rounded-full">
-                          New Arrival
-                        </span>
-                      )}
-                      {product.is_best_seller && (
-                        <span className="bg-[var(--color-indigo)] text-white text-xs px-2 py-1 rounded-full">
-                          Best Seller
-                        </span>
-                      )}
-                      {product.is_sustainable && (
-                        <span className="bg-[var(--color-success)] text-white text-xs px-2 py-1 rounded-full">
-                          Eco-Friendly
-                        </span>
-                      )}
-                    </div>
+              <Link key={product.id} href={`/product/${product.slug}`} className="group bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg block">
+                <div className={`h-64 relative ${getCategoryColor(product.category_id)}`}>
+                  <div className="flex items-center justify-center h-full text-white">
+                    <span className="font-['Caveat'] text-3xl">{product.name}</span>
                   </div>
                   
-                  <div className="p-6">
-                    <div className="mb-3">
-                      <span className="inline-block px-2 py-1 rounded text-xs bg-[var(--color-clay)] text-[var(--color-indigo)]">
-                        {getCategoryName(product.category_id)}
+                  {/* Product badges */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    {product.is_new_arrival && (
+                      <span className="bg-[var(--color-alert)] text-white text-xs px-2 py-1 rounded-full">
+                        New Arrival
                       </span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-2 group-hover:text-[var(--color-terracotta)] transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm text-[var(--color-charcoal)]/70 mb-4 line-clamp-2">
-                      {product.description}
-                    </p>
-                    <div className="flex justify-between items-center">
-                      <div>
-                        {product.discount_price ? (
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-lg">
-                              {formatPrice(product.discount_price)}
-                            </span>
-                            <span className="text-sm line-through text-[var(--color-charcoal)]/60">
-                              {formatPrice(product.price)}
-                            </span>
-                          </div>
-                        ) : (
+                    )}
+                    {product.is_best_seller && (
+                      <span className="bg-[var(--color-indigo)] text-white text-xs px-2 py-1 rounded-full">
+                        Best Seller
+                      </span>
+                    )}
+                    {product.is_sustainable && (
+                      <span className="bg-[var(--color-success)] text-white text-xs px-2 py-1 rounded-full">
+                        Eco-Friendly
+                      </span>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <div className="mb-3">
+                    <span className="inline-block px-2 py-1 rounded text-xs bg-[var(--color-clay)] text-[var(--color-indigo)]">
+                      {getCategoryName(product.category_id)}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2 group-hover:text-[var(--color-terracotta)] transition-colors">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-[var(--color-charcoal)]/70 mb-4 line-clamp-2">
+                    {product.description}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      {product.discount_price ? (
+                        <div className="flex items-center gap-2">
                           <span className="font-bold text-lg">
+                            {formatPrice(product.discount_price)}
+                          </span>
+                          <span className="text-sm line-through text-[var(--color-charcoal)]/60">
                             {formatPrice(product.price)}
                           </span>
-                        )}
-                      </div>
-                      <span className="inline-flex items-center text-[var(--color-indigo)] text-sm font-medium">
-                        View Details
-                        <ChevronRight className="h-4 w-4 ml-1" />
-                      </span>
+                        </div>
+                      ) : (
+                        <span className="font-bold text-lg">
+                          {formatPrice(product.price)}
+                        </span>
+                      )}
                     </div>
+                    <span className="inline-flex items-center text-[var(--color-indigo)] text-sm font-medium">
+                      View Details
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </span>
                   </div>
-                </a>
+                </div>
               </Link>
             ))}
           </div>
         )}
         
         <div className="mt-12 text-center">
-          <Link href="/crafts/dokra">
-            <a className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-terracotta)] text-white font-medium rounded-full hover:bg-[var(--color-terracotta)]/90 transition">
-              View All Products
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </a>
+          <Link href="/crafts/dokra" className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-terracotta)] text-white font-medium rounded-full hover:bg-[var(--color-terracotta)]/90 transition">
+            View All Products
+            <ChevronRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
       </div>
