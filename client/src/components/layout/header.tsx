@@ -68,10 +68,10 @@ export default function Header() {
           <Link href="/">
             <div className="flex items-center">
               <div className="w-10 h-10 flex items-center justify-center mr-3">
-                <img src={logoImage} alt="Artisan Bengal Logo" className="w-full h-full object-contain" />
+                <img src={logoImage} alt="Artisan Sphere Logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-['Cormorant_Garamond'] font-bold text-xl text-[var(--color-terracotta)] tracking-wide">
-                Artisan Bengal
+                Artisan Sphere
               </span>
             </div>
           </Link>
@@ -280,10 +280,10 @@ export default function Header() {
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center">
                     <div className="w-8 h-8 flex items-center justify-center mr-2">
-                      <img src={logoImage} alt="Artisan Bengal Logo" className="w-full h-full object-contain" />
+                      <img src={logoImage} alt="Artisan Sphere Logo" className="w-full h-full object-contain" />
                     </div>
                     <span className="font-['Cormorant_Garamond'] font-bold text-lg text-[var(--color-terracotta)]">
-                      Artisan Bengal
+                      Artisan Sphere
                     </span>
                   </div>
                   <SheetClose asChild>
