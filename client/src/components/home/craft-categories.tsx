@@ -81,11 +81,9 @@ export default function CraftCategories() {
                     <p className="mb-4 text-sm text-[var(--color-charcoal)]/70">
                       {category.description}
                     </p>
-                    <Link href={`/crafts/${category.slug}`}>
-                      <a className="inline-flex items-center text-[var(--color-indigo)] font-medium">
-                        Explore Collection
-                        <ChevronRight className="h-5 w-5 ml-1" />
-                      </a>
+                    <Link href={`/crafts/${category.slug}`} className="inline-flex items-center text-[var(--color-indigo)] font-medium">
+                      Explore Collection
+                      <ChevronRight className="h-5 w-5 ml-1" />
                     </Link>
                   </div>
                 </div>

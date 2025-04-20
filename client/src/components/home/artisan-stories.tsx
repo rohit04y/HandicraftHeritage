@@ -11,7 +11,7 @@ interface Artisan {
 }
 
 export default function ArtisanStories() {
-  const { data: artisans, isLoading } = useQuery({
+  const { data: artisans = [], isLoading } = useQuery<Artisan[]>({
     queryKey: ['/api/artisans'],
   });
   

@@ -48,11 +48,9 @@ export default function BlockchainVerification() {
                 </div>
               </div>
               
-              <Link href="/about#blockchain">
-                <a className="inline-flex items-center text-[var(--color-indigo)] font-medium">
-                  Learn more about our blockchain technology
-                  <ChevronRight className="h-5 w-5 ml-1" />
-                </a>
+              <Link href="/about#blockchain" className="inline-flex items-center text-[var(--color-indigo)] font-medium">
+                Learn more about our blockchain technology
+                <ChevronRight className="h-5 w-5 ml-1" />
               </Link>
             </div>
           </div>
