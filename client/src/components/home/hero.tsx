@@ -43,15 +43,12 @@ export default function Hero() {
           <div className="bg-[var(--color-terracotta)] p-1 rounded-lg shadow-xl">
             <div className="aspect-w-4 aspect-h-3 bg-[var(--color-beige)] rounded-lg flex items-center justify-center overflow-hidden">
               <div className="text-center p-8">
-                <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center">
+                <div className="w-44 h-44 mx-auto mb-6 flex items-center justify-center">
                   <img src={logoImage} alt="Artisan Sphere Logo" className="w-full h-full object-contain" />
                 </div>
                 <h2 className="font-['Cormorant_Garamond'] text-3xl font-bold text-[var(--color-terracotta)] mb-3">Artisan Sphere</h2>
-                <p className="text-[var(--color-charcoal)] mb-2">
+                <p className="text-[var(--color-charcoal)]">
                   Connecting rural artisans directly to global markets while preserving traditional craftsmanship
-                </p>
-                <p className="text-sm italic text-[var(--color-indigo)]">
-                  Connecting Soul to Soil
                 </p>
               </div>
             </div>
