@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { ChevronRight } from "lucide-react";
-import ProductCard from "@/components/products/product-card";
-import { Button } from "@/components/ui/button";
+import { formatPrice } from "@/lib/utils";
 
 interface ProductFilterProps {
   activeFilter: string;
@@ -11,113 +10,244 @@ interface ProductFilterProps {
 }
 
 function ProductFilter({ activeFilter, setActiveFilter }: ProductFilterProps) {
+  const filters = [
+    { id: "all", label: "All Products" },
+    { id: "dokra", label: "Dokra" },
+    { id: "kantha", label: "Kantha" },
+    { id: "terracotta", label: "Terracotta" },
+    { id: "shitalpati", label: "Shitalpati" }
+  ];
+  
   return (
-    <div className="flex space-x-3">
-      <Button
-        variant={activeFilter === "new" ? "default" : "outline"}
-        className={activeFilter === "new" 
-          ? "bg-[var(--color-clay)] text-[var(--color-charcoal)]" 
-          : "bg-[var(--color-clay)]/20 text-[var(--color-charcoal)]"}
-        onClick={() => setActiveFilter("new")}
-      >
-        New Arrivals
-      </Button>
-      <Button
-        variant={activeFilter === "bestsellers" ? "default" : "outline"}
-        className={activeFilter === "bestsellers" 
-          ? "bg-[var(--color-clay)] text-[var(--color-charcoal)]" 
-          : "bg-[var(--color-clay)]/20 text-[var(--color-charcoal)]"}
-        onClick={() => setActiveFilter("bestsellers")}
-      >
-        Best Sellers
-      </Button>
-      <Button
-        variant={activeFilter === "sustainable" ? "default" : "outline"}
-        className={activeFilter === "sustainable" 
-          ? "bg-[var(--color-clay)] text-[var(--color-charcoal)]" 
-          : "bg-[var(--color-clay)]/20 text-[var(--color-charcoal)]"}
-        onClick={() => setActiveFilter("sustainable")}
-      >
-        Sustainable
-      </Button>
+    <div className="flex flex-wrap justify-center gap-2 mb-8">
+      {filters.map((filter) => (
+        <button
+          key={filter.id}
+          onClick={() => setActiveFilter(filter.id)}
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            activeFilter === filter.id
+              ? "bg-[var(--color-terracotta)] text-white"
+              : "bg-white text-[var(--color-charcoal)] hover:bg-[var(--color-clay)]"
+          }`}
+        >
+          {filter.label}
+        </button>
+      ))}
     </div>
   );
 }
 
 export default function FeaturedProducts() {
-  const [activeFilter, setActiveFilter] = useState("new");
+  const [activeFilter, setActiveFilter] = useState("all");
   
-  // Fetch products based on active filter
   const { data: products, isLoading } = useQuery({
-    queryKey: [activeFilter === "new" 
-      ? '/api/products/new-arrivals' 
-      : activeFilter === "bestsellers"
-      ? '/api/products/best-sellers'
-      : '/api/products/sustainable'
-    ],
+    queryKey: ['/api/products/featured'],
   });
   
+  // Dummy data for products if API returns empty
+  const dummyProducts = [
+    {
+      id: 1,
+      name: "Bronze Elephant Figurine",
+      price: 2999,
+      description: "Traditional Dokra metal casting technique used to create this beautiful elephant figurine",
+      image: "",
+      discount_price: 2499,
+      is_featured: true,
+      is_new_arrival: false,
+      is_best_seller: true,
+      is_sustainable: true,
+      category_id: 1,
+      artisan_id: 1,
+      slug: "bronze-elephant-figurine"
+    },
+    {
+      id: 2,
+      name: "Embroidered Wall Hanging",
+      price: 1899,
+      description: "Handcrafted Kantha embroidery wall hanging depicting rural Bengal life",
+      image: "",
+      discount_price: null,
+      is_featured: true,
+      is_new_arrival: true,
+      is_best_seller: false,
+      is_sustainable: true,
+      category_id: 2,
+      artisan_id: 2,
+      slug: "embroidered-wall-hanging"
+    },
+    {
+      id: 3,
+      name: "Terracotta Decorative Pot",
+      price: 1299,
+      description: "Hand-painted terracotta pot with traditional Bengali motifs",
+      image: "",
+      discount_price: 999,
+      is_featured: true,
+      is_new_arrival: true,
+      is_best_seller: true,
+      is_sustainable: true,
+      category_id: 3,
+      artisan_id: 3,
+      slug: "terracotta-decorative-pot"
+    },
+    {
+      id: 4,
+      name: "Shitalpati Table Mat Set",
+      price: 1499,
+      description: "Set of 6 eco-friendly table mats made from natural reed fiber",
+      image: "",
+      discount_price: null,
+      is_featured: true,
+      is_new_arrival: false,
+      is_best_seller: false,
+      is_sustainable: true,
+      category_id: 4,
+      artisan_id: 4,
+      slug: "shitalpati-table-mat-set"
+    }
+  ];
+  
+  // Use products from API or fallback to dummy data
+  const displayProducts = products || dummyProducts;
+  
+  // Filter products based on active filter
+  const filteredProducts = displayProducts.filter(product => {
+    if (activeFilter === "all") return true;
+    if (activeFilter === "dokra" && product.category_id === 1) return true;
+    if (activeFilter === "kantha" && product.category_id === 2) return true;
+    if (activeFilter === "terracotta" && product.category_id === 3) return true;
+    if (activeFilter === "shitalpati" && product.category_id === 4) return true;
+    return false;
+  });
+  
+  // Get category name from category ID
+  const getCategoryName = (categoryId: number) => {
+    switch(categoryId) {
+      case 1: return "Dokra";
+      case 2: return "Kantha";
+      case 3: return "Terracotta";
+      case 4: return "Shitalpati";
+      default: return "Other";
+    }
+  };
+  
+  // Get category color based on category ID
+  const getCategoryColor = (categoryId: number) => {
+    switch(categoryId) {
+      case 1: return "bg-[var(--color-golden)]";
+      case 2: return "bg-[var(--color-indigo)]";
+      case 3: return "bg-[var(--color-terracotta)]";
+      case 4: return "bg-[var(--color-success)]";
+      default: return "bg-[var(--color-charcoal)]";
+    }
+  };
+  
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 md:py-24 bg-[var(--color-beige)]">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-          <div>
-            <h2 className="font-['Cormorant_Garamond'] text-3xl md:text-4xl font-bold mb-2">
-              Featured Creations
-            </h2>
-            <p className="text-[var(--color-charcoal)]/70">
-              Handcrafted with care and expertise by our talented artisans
-            </p>
-          </div>
-          <div className="mt-4 md:mt-0 hidden md:block">
-            <ProductFilter 
-              activeFilter={activeFilter} 
-              setActiveFilter={setActiveFilter} 
-            />
-          </div>
+        <div className="mb-12 text-center">
+          <h2 className="font-['Cormorant_Garamond'] text-3xl md:text-4xl font-bold mb-4">
+            Featured Artisan Creations
+          </h2>
+          <p className="max-w-2xl mx-auto text-[var(--color-charcoal)]/70">
+            Discover unique handicrafts made with traditional techniques,
+            each item tells a story of Bengal's rich cultural heritage.
+          </p>
         </div>
         
-        {/* Mobile filter buttons */}
-        <div className="mb-8 md:hidden flex justify-center">
-          <ProductFilter 
-            activeFilter={activeFilter} 
-            setActiveFilter={setActiveFilter} 
-          />
-        </div>
+        <ProductFilter activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
         
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[...Array(4)].map((_, index) => (
-              <div key={index} className="animate-pulse bg-[var(--color-beige)] rounded-lg overflow-hidden shadow-sm">
+              <div key={index} className="animate-pulse bg-white rounded-lg overflow-hidden shadow-md">
                 <div className="h-64 bg-gray-200"></div>
-                <div className="p-5">
-                  <div className="flex items-center mb-2">
-                    <div className="h-4 bg-gray-200 w-16 rounded"></div>
-                    <div className="ml-auto h-4 bg-gray-200 w-10 rounded"></div>
-                  </div>
-                  <div className="h-5 bg-gray-200 w-48 mb-1 rounded"></div>
-                  <div className="h-4 bg-gray-200 w-full mb-3 rounded"></div>
-                  <div className="flex items-end justify-between">
-                    <div className="h-6 bg-gray-200 w-20 rounded"></div>
-                    <div className="h-8 bg-gray-200 w-24 rounded"></div>
-                  </div>
+                <div className="p-6">
+                  <div className="h-6 bg-gray-200 w-32 mb-2 rounded"></div>
+                  <div className="h-5 bg-gray-200 w-48 mb-3 rounded"></div>
+                  <div className="h-4 bg-gray-200 w-full mb-4 rounded"></div>
+                  <div className="h-8 bg-gray-200 w-full rounded"></div>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {products?.map((product: any) => (
-              <ProductCard key={product.id} product={product} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {filteredProducts.map(product => (
+              <Link key={product.id} href={`/product/${product.slug}`}>
+                <a className="group bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg block">
+                  <div className={`h-64 relative ${getCategoryColor(product.category_id)}`}>
+                    <div className="flex items-center justify-center h-full text-white">
+                      <span className="font-['Caveat'] text-3xl">{product.name}</span>
+                    </div>
+                    
+                    {/* Product badges */}
+                    <div className="absolute top-4 left-4 flex flex-col gap-2">
+                      {product.is_new_arrival && (
+                        <span className="bg-[var(--color-alert)] text-white text-xs px-2 py-1 rounded-full">
+                          New Arrival
+                        </span>
+                      )}
+                      {product.is_best_seller && (
+                        <span className="bg-[var(--color-indigo)] text-white text-xs px-2 py-1 rounded-full">
+                          Best Seller
+                        </span>
+                      )}
+                      {product.is_sustainable && (
+                        <span className="bg-[var(--color-success)] text-white text-xs px-2 py-1 rounded-full">
+                          Eco-Friendly
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="mb-3">
+                      <span className="inline-block px-2 py-1 rounded text-xs bg-[var(--color-clay)] text-[var(--color-indigo)]">
+                        {getCategoryName(product.category_id)}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-lg mb-2 group-hover:text-[var(--color-terracotta)] transition-colors">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-[var(--color-charcoal)]/70 mb-4 line-clamp-2">
+                      {product.description}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <div>
+                        {product.discount_price ? (
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-lg">
+                              {formatPrice(product.discount_price)}
+                            </span>
+                            <span className="text-sm line-through text-[var(--color-charcoal)]/60">
+                              {formatPrice(product.price)}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="font-bold text-lg">
+                            {formatPrice(product.price)}
+                          </span>
+                        )}
+                      </div>
+                      <span className="inline-flex items-center text-[var(--color-indigo)] text-sm font-medium">
+                        View Details
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </Link>
             ))}
           </div>
         )}
         
         <div className="mt-12 text-center">
-          <Link href="/products">
-            <a className="inline-flex items-center px-6 py-3 border-2 border-[var(--color-terracotta)] text-[var(--color-terracotta)] font-medium rounded-full hover:bg-[var(--color-terracotta)] hover:text-white transition">
+          <Link href="/crafts/dokra">
+            <a className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-terracotta)] text-white font-medium rounded-full hover:bg-[var(--color-terracotta)]/90 transition">
               View All Products
-              <ChevronRight className="h-5 w-5 ml-2" />
+              <ChevronRight className="ml-2 h-5 w-5" />
             </a>
           </Link>
         </div>

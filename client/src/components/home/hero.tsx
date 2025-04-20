@@ -2,16 +2,15 @@ import { Link } from "wouter";
 
 export default function Hero() {
   return (
-    <section className="bg-cover bg-center relative" style={{
-      backgroundImage: "url('https://images.unsplash.com/photo-1545022388-9f16ebd5c898?auto=format&fit=crop&w=1920&q=80')"
-    }}>
-      <div className="container mx-auto px-4 py-24 md:py-32 lg:py-40 md:w-4/5">
-        <div className="max-w-xl bg-[var(--color-beige)]/90 p-8 md:p-12 rounded-lg backdrop-blur-sm">
-          <h1 className="font-['Cormorant_Garamond'] text-4xl md:text-5xl font-bold text-[var(--color-terracotta)] mb-4">
-            Revitalizing Bengal's<br />Rural Handicrafts
+    <section className="bg-[var(--color-clay)] py-12 md:py-20">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+        {/* Hero Content */}
+        <div className="md:w-1/2 md:pr-8 mb-8 md:mb-0">
+          <h1 className="font-['Cormorant_Garamond'] text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-terracotta)] mb-4">
+            Revitalizing Bengal's Rural Handicrafts
           </h1>
-          <p className="text-lg mb-8">
-            Empowering artisans through fair trade and sustainable practices while preserving traditional craftsmanship.
+          <p className="text-lg mb-8 text-[var(--color-charcoal)]">
+            Empowering artisans through fair trade and sustainable practices while preserving traditional craftsmanship for future generations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/crafts/dokra">
@@ -26,28 +25,37 @@ export default function Hero() {
             </Link>
           </div>
           
-          <div className="mt-8 flex items-center">
+          <div className="mt-8 flex items-center p-4 bg-white/80 rounded-lg shadow-sm inline-block">
             <div className="flex -space-x-3">
-              <img 
-                src="https://images.unsplash.com/photo-1594616838951-c155f8d978a0?auto=format&fit=crop&w=100&h=100&q=80" 
-                alt="Artisan" 
-                className="w-10 h-10 rounded-full border-2 border-[var(--color-beige)]" 
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&h=100&q=80" 
-                alt="Artisan" 
-                className="w-10 h-10 rounded-full border-2 border-[var(--color-beige)]" 
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=100&h=100&q=80" 
-                alt="Artisan" 
-                className="w-10 h-10 rounded-full border-2 border-[var(--color-beige)]" 
-              />
+              <div className="w-10 h-10 rounded-full bg-[var(--color-golden)] flex items-center justify-center border-2 border-white text-white font-bold">A</div>
+              <div className="w-10 h-10 rounded-full bg-[var(--color-indigo)] flex items-center justify-center border-2 border-white text-white font-bold">B</div>
+              <div className="w-10 h-10 rounded-full bg-[var(--color-terracotta)] flex items-center justify-center border-2 border-white text-white font-bold">C</div>
             </div>
             <span className="ml-4 text-sm font-medium">
               Empowering <span className="text-[var(--color-terracotta)]">500+</span> artisans across West Bengal
             </span>
           </div>
+        </div>
+        
+        {/* Hero Visual */}
+        <div className="md:w-1/2 relative">
+          <div className="bg-[var(--color-terracotta)] p-1 rounded-lg shadow-xl">
+            <div className="aspect-w-4 aspect-h-3 bg-[var(--color-beige)] rounded-lg flex items-center justify-center overflow-hidden">
+              <div className="text-center p-8">
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-[var(--color-golden)] flex items-center justify-center">
+                  <span className="font-['Caveat'] text-white text-5xl">AB</span>
+                </div>
+                <h2 className="font-['Cormorant_Garamond'] text-3xl font-bold text-[var(--color-terracotta)] mb-3">Artisan Bengal</h2>
+                <p className="text-[var(--color-charcoal)]">
+                  Connecting rural artisans directly to global markets while preserving traditional craftsmanship
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Decorative elements */}
+          <div className="absolute -bottom-4 -left-4 w-20 h-20 rounded-full bg-[var(--color-golden)] opacity-60"></div>
+          <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-[var(--color-indigo)] opacity-60"></div>
         </div>
       </div>
     </section>

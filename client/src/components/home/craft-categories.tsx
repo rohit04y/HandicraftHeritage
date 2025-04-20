@@ -7,9 +7,17 @@ interface Category {
   id: number;
   name: string;
   description: string;
-  image: string;
+  image?: string;
   slug: string;
 }
+
+// Predefined colors for category cards
+const categoryColors = {
+  "Dokra": "bg-[var(--color-golden)]",
+  "Kantha": "bg-[var(--color-indigo)]",
+  "Terracotta": "bg-[var(--color-terracotta)]",
+  "Shitalpati": "bg-[var(--color-success)]"
+};
 
 export default function CraftCategories() {
   const { data: categories, isLoading } = useQuery({
@@ -45,40 +53,44 @@ export default function CraftCategories() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {categories?.map((category: Category) => (
-              <div 
-                key={category.id} 
-                className="category-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="h-52 overflow-hidden">
-                  <img 
-                    src={category.image} 
-                    alt={`${category.name} Craft`} 
-                    className="w-full h-full object-cover transition duration-500 hover:scale-105" 
-                  />
+            {categories?.map((category: Category) => {
+              // Get the background color for the category, or default to golden
+              const bgColor = categoryColors[category.name as keyof typeof categoryColors] || "bg-[var(--color-golden)]";
+              
+              return (
+                <div 
+                  key={category.id} 
+                  className="category-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className={`h-52 overflow-hidden flex items-center justify-center ${bgColor}`}>
+                    <div className="text-white text-center p-4">
+                      <span className="font-['Caveat'] text-4xl block mb-2">{category.name}</span>
+                      <span className="font-medium block">Traditional Craft</span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <span className="font-['Caveat'] text-2xl text-[var(--color-golden)] mb-2 block">
+                      {category.name}
+                    </span>
+                    <h3 className="font-['Cormorant_Garamond'] text-xl font-semibold mb-3">
+                      {category.name === "Dokra" && "Metal Casting Tradition"}
+                      {category.name === "Kantha" && "Embroidery Art"}
+                      {category.name === "Terracotta" && "Clay Pottery"}
+                      {category.name === "Shitalpati" && "Cool Mat Weaving"}
+                    </h3>
+                    <p className="mb-4 text-sm text-[var(--color-charcoal)]/70">
+                      {category.description}
+                    </p>
+                    <Link href={`/crafts/${category.slug}`}>
+                      <a className="inline-flex items-center text-[var(--color-indigo)] font-medium">
+                        Explore Collection
+                        <ChevronRight className="h-5 w-5 ml-1" />
+                      </a>
+                    </Link>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <span className="font-['Caveat'] text-2xl text-[var(--color-golden)] mb-2 block">
-                    {category.name}
-                  </span>
-                  <h3 className="font-['Cormorant_Garamond'] text-xl font-semibold mb-3">
-                    {category.name === "Dokra" && "Metal Casting Tradition"}
-                    {category.name === "Kantha" && "Embroidery Art"}
-                    {category.name === "Terracotta" && "Clay Pottery"}
-                    {category.name === "Shitalpati" && "Cool Mat Weaving"}
-                  </h3>
-                  <p className="mb-4 text-sm text-[var(--color-charcoal)]/70">
-                    {category.description}
-                  </p>
-                  <Link href={`/crafts/${category.slug}`}>
-                    <a className="inline-flex items-center text-[var(--color-indigo)] font-medium">
-                      Explore Collection
-                      <ChevronRight className="h-5 w-5 ml-1" />
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
