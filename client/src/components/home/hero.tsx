@@ -14,15 +14,11 @@ export default function Hero() {
             Empowering artisans through fair trade and sustainable practices while preserving traditional craftsmanship for future generations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/crafts/dokra">
-              <a className="px-8 py-3 bg-[var(--color-terracotta)] text-white font-medium rounded-full hover:bg-[var(--color-terracotta)]/90 transition text-center">
-                Explore Crafts
-              </a>
+            <Link href="/crafts/dokra" className="px-8 py-3 bg-[var(--color-terracotta)] text-white font-medium rounded-full hover:bg-[var(--color-terracotta)]/90 transition text-center inline-block">
+              Explore Crafts
             </Link>
-            <Link href="/artisans">
-              <a className="px-8 py-3 border border-[var(--color-indigo)] text-[var(--color-indigo)] font-medium rounded-full hover:bg-[var(--color-indigo)]/5 transition text-center">
-                Meet Artisans
-              </a>
+            <Link href="/artisans" className="px-8 py-3 border border-[var(--color-indigo)] text-[var(--color-indigo)] font-medium rounded-full hover:bg-[var(--color-indigo)]/5 transition text-center inline-block">
+              Meet Artisans
             </Link>
           </div>
           
