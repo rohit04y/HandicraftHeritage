@@ -1,6 +1,7 @@
 import { ChevronRight, Shield, MapPin, Banknote } from "lucide-react";
 import BlockchainCertificate from "@/components/ui/blockchain-certificate";
 import { Link } from "wouter";
+import dokraElephantImage from "@assets/image_1745140861554.png";
 
 export default function BlockchainVerification() {
   return (
@@ -63,7 +64,7 @@ export default function BlockchainVerification() {
               artisan="Rajesh Sutradhar"
               location="Bankura, West Bengal"
               blockchainId="0x71C...8f3E"
-              productImage="https://images.unsplash.com/photo-1612810806695-30f7a8258391?auto=format&fit=crop&w=150&h=150&q=80"
+              productImage={dokraElephantImage}
             />
           </div>
         </div>
