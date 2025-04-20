@@ -26,11 +26,9 @@ export default function Sustainability() {
               Our artisans work with eco-friendly materials sourced locally, including natural fibers, 
               clay, and recycled metals.
             </p>
-            <Link href="/sustainability#materials">
-              <a className="text-[var(--color-success)] font-medium inline-flex items-center">
-                Learn More
-                <ChevronRight className="h-5 w-5 ml-1" />
-              </a>
+            <Link href="/sustainability#materials" className="text-[var(--color-success)] font-medium inline-flex items-center">
+              Learn More
+              <ChevronRight className="h-5 w-5 ml-1" />
             </Link>
           </div>
           
@@ -43,11 +41,9 @@ export default function Sustainability() {
               Time-honored crafting methods that have low environmental impact, using hand tools and 
               natural processing methods.
             </p>
-            <Link href="/sustainability#techniques">
-              <a className="text-[var(--color-success)] font-medium inline-flex items-center">
-                Learn More
-                <ChevronRight className="h-5 w-5 ml-1" />
-              </a>
+            <Link href="/sustainability#techniques" className="text-[var(--color-success)] font-medium inline-flex items-center">
+              Learn More
+              <ChevronRight className="h-5 w-5 ml-1" />
             </Link>
           </div>
           
@@ -60,21 +56,17 @@ export default function Sustainability() {
               Products are shipped in biodegradable packaging made from recycled materials with 
               minimal environmental footprint.
             </p>
-            <Link href="/sustainability#packaging">
-              <a className="text-[var(--color-success)] font-medium inline-flex items-center">
-                Learn More
-                <ChevronRight className="h-5 w-5 ml-1" />
-              </a>
+            <Link href="/sustainability#packaging" className="text-[var(--color-success)] font-medium inline-flex items-center">
+              Learn More
+              <ChevronRight className="h-5 w-5 ml-1" />
             </Link>
           </div>
         </div>
         
         <div className="mt-12 text-center">
-          <Link href="/sustainability-report">
-            <a className="inline-flex items-center px-6 py-3 border-2 border-[var(--color-success)] text-[var(--color-success)] font-medium rounded-full hover:bg-[var(--color-success)] hover:text-white transition">
-              Our Sustainability Report
-              <ChevronRight className="h-5 w-5 ml-2" />
-            </a>
+          <Link href="/sustainability-report" className="inline-flex items-center px-6 py-3 border-2 border-[var(--color-success)] text-[var(--color-success)] font-medium rounded-full hover:bg-[var(--color-success)] hover:text-white transition">
+            Our Sustainability Report
+            <ChevronRight className="h-5 w-5 ml-2" />
           </Link>
         </div>
       </div>
