@@ -74,11 +74,9 @@ export default function ArtisanStories() {
                     {artisan.bio}
                   </p>
                   <div className="flex justify-between items-center">
-                    <Link href={`/artisans/${artisan.id}`}>
-                      <a className="text-[var(--color-indigo)] font-medium inline-flex items-center">
-                        Read Full Story
-                        <ChevronRight className="h-5 w-5 ml-1" />
-                      </a>
+                    <Link href={`/artisans/${artisan.id}`} className="text-[var(--color-indigo)] font-medium inline-flex items-center">
+                      Read Full Story
+                      <ChevronRight className="h-5 w-5 ml-1" />
                     </Link>
                     <div className="flex space-x-2">
                       <a href="#" className="text-[var(--color-charcoal)] hover:text-[var(--color-indigo)]">
@@ -96,11 +94,9 @@ export default function ArtisanStories() {
         )}
         
         <div className="mt-12 text-center">
-          <Link href="/artisans">
-            <a className="inline-flex items-center px-6 py-3 border-2 border-[var(--color-indigo)] text-[var(--color-indigo)] font-medium rounded-full hover:bg-[var(--color-indigo)] hover:text-white transition">
-              Meet All Artisans
-              <ChevronRight className="h-5 w-5 ml-2" />
-            </a>
+          <Link href="/artisans" className="inline-flex items-center px-6 py-3 border-2 border-[var(--color-indigo)] text-[var(--color-indigo)] font-medium rounded-full hover:bg-[var(--color-indigo)] hover:text-white transition">
+            Meet All Artisans
+            <ChevronRight className="h-5 w-5 ml-2" />
           </Link>
         </div>
       </div>
