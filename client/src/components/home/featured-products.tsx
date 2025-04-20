@@ -40,7 +40,23 @@ function ProductFilter({ activeFilter, setActiveFilter }: ProductFilterProps) {
 export default function FeaturedProducts() {
   const [activeFilter, setActiveFilter] = useState("all");
   
-  const { data: products, isLoading } = useQuery({
+  type Product = {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    image?: string;
+    discount_price?: number | null;
+    is_featured: boolean;
+    is_new_arrival: boolean;
+    is_best_seller: boolean;
+    is_sustainable: boolean;
+    category_id: number;
+    artisan_id: number;
+    slug: string;
+  };
+
+  const { data: products = [], isLoading } = useQuery<Product[]>({
     queryKey: ['/api/products/featured'],
   });
   
@@ -112,7 +128,7 @@ export default function FeaturedProducts() {
   const displayProducts = products || dummyProducts;
   
   // Filter products based on active filter
-  const filteredProducts = displayProducts.filter(product => {
+  const filteredProducts = displayProducts.filter((product: Product) => {
     if (activeFilter === "all") return true;
     if (activeFilter === "dokra" && product.category_id === 1) return true;
     if (activeFilter === "kantha" && product.category_id === 2) return true;
@@ -174,7 +190,7 @@ export default function FeaturedProducts() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {filteredProducts.map(product => (
+            {filteredProducts.map((product: Product) => (
               <Link key={product.id} href={`/product/${product.slug}`}>
                 <a className="group bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg block">
                   <div className={`h-64 relative ${getCategoryColor(product.category_id)}`}>

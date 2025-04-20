@@ -20,7 +20,7 @@ const categoryColors = {
 };
 
 export default function CraftCategories() {
-  const { data: categories, isLoading } = useQuery({
+  const { data: categories = [], isLoading } = useQuery<Category[]>({
     queryKey: ['/api/categories'],
   });
   
