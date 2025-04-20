@@ -1,6 +1,7 @@
 import { ChevronRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import artisanCraftingImage from "@/assets/artisan_crafting.png";
 
 export default function EducationalSection() {
   return (
@@ -64,8 +65,8 @@ export default function EducationalSection() {
               </div>
               <div className="aspect-w-4 aspect-h-3">
                 <img 
-                  src="https://images.unsplash.com/photo-1516727003284-a96541e51e9c?auto=format&fit=crop&w=600&h=450&q=80" 
-                  alt="Terracotta sculpture making" 
+                  src={artisanCraftingImage} 
+                  alt="Artisan crafting dokra figurine" 
                   className="w-full h-full object-cover rounded-lg shadow-md" 
                 />
               </div>

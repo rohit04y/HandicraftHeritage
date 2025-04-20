@@ -158,12 +158,12 @@ export default function Newsletter() {
               
               <div className="mt-6 text-center text-sm text-[var(--color-charcoal)]/70">
                 By subscribing, you agree to our{" "}
-                <Link href="/privacy-policy">
-                  <a className="underline text-[var(--color-terracotta)]">Privacy Policy</a>
+                <Link href="/privacy-policy" className="underline text-[var(--color-terracotta)]">
+                  Privacy Policy
                 </Link>
                 {" "}and{" "}
-                <Link href="/terms">
-                  <a className="underline text-[var(--color-terracotta)]">Terms of Service</a>
+                <Link href="/terms" className="underline text-[var(--color-terracotta)]">
+                  Terms of Service
                 </Link>.
               </div>
             </form>
