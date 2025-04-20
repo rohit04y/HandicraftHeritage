@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useCart } from "@/contexts/cart-context";
 import { cn } from "@/lib/utils";
+import logoImage from "@assets/image_1745140048371.png";
 import { 
   X, 
   Menu, 
@@ -66,8 +67,8 @@ export default function Header() {
         <div className="flex items-center">
           <Link href="/">
             <div className="flex items-center">
-              <div className="w-10 h-10 rounded-full bg-[var(--color-terracotta)] flex items-center justify-center mr-3">
-                <span className="font-['Caveat'] text-[var(--color-beige)] text-xl">AB</span>
+              <div className="w-10 h-10 flex items-center justify-center mr-3">
+                <img src={logoImage} alt="Artisan Bengal Logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-['Cormorant_Garamond'] font-bold text-xl text-[var(--color-terracotta)] tracking-wide">
                 Artisan Bengal
@@ -278,8 +279,8 @@ export default function Header() {
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-[var(--color-terracotta)] flex items-center justify-center mr-2">
-                      <span className="font-['Caveat'] text-[var(--color-beige)] text-base">AB</span>
+                    <div className="w-8 h-8 flex items-center justify-center mr-2">
+                      <img src={logoImage} alt="Artisan Bengal Logo" className="w-full h-full object-contain" />
                     </div>
                     <span className="font-['Cormorant_Garamond'] font-bold text-lg text-[var(--color-terracotta)]">
                       Artisan Bengal
